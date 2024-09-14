@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const locationInput = document.getElementById('locationInput'); // Input de localización
     const applyFiltersBtn = document.getElementById('applyFiltersBtn'); // Botón para aplicar filtros
     const defaultImage = "https://www.jpeg-repair.org/img/index_sample3A.jpg"; // URL de la imagen predeterminada
+    
+
 
     let currentPage = 1;
     const itemsPerPage = 20;
@@ -78,6 +80,23 @@ document.addEventListener('DOMContentLoaded', function() {
             loader.style.display = 'none'; // Ocultar cargador después de intentar cargar datos
         }   
     }
+    // Función para traducir texto usando el servidor de Node.js
+    async function translateText(text, targetLang) {
+        try {
+            const response = await fetch('/translate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: text, targetLang: targetLang })
+            });
+            const result = await response.json();
+            return result.translatedText;
+        } catch (error) {
+            console.error('Error al traducir el texto:', error);
+            return text; // Devuelve el texto original si hay un error
+        }
+    }
 
     // Recupera y muestra objetos para la página actual
     async function displayObjects() {
@@ -87,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const end = start + itemsPerPage;
         const objectsToDisplay = objectIDs.slice(start, end);
 
-        console.log(`Mostrando objetos del índice ${start} al ${end}.`);
+        console.log(`Mostrando objetos del índice ${start} al ${end}.`);//mensaje de depuracion 
 
         for (let objectID of objectsToDisplay) {
             console.log('Obteniendo datos para ID de objeto:', objectID);
@@ -95,14 +114,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 const response = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectID}`);
                 const data = await response.json();
 
-                let imageSrc = data.primaryImageSmall || defaultImage;
+            // Traducción de los campos
+            const title = await translateText(data.title || 'Sin título', 'es');
+            const culture = await translateText(data.culture || 'N/A', 'es');
+            const dynasty = await translateText(data.dynasty || 'N/A', 'es');
+
+            let imageSrc = data.primaryImageSmall || defaultImage;
 
                 const card = `
                     <div class="card">
-                        <img src="${imageSrc}" alt="${data.title || 'Sin título'}" onerror="this.onerror=null; this.src='${defaultImage}';">
-                        <h3>${data.title || 'Sin título'}</h3>
-                        <p><strong>Cultura:</strong> ${data.culture || 'N/A'}</p>
-                        <p><strong>Dinastía:</strong> ${data.dynasty || 'N/A'}</p>
+                        <img src="${imageSrc}" alt="${title}" onerror="this.onerror=null; this.src='${defaultImage}';">
+                        <h3>${title}</h3>
+                        <p><strong>Cultura:</strong> ${culture}</p>
+                    <p><strong>Dinastía:</strong> ${dynasty}</p>
                     </div>
                 `;
                 artGrid.insertAdjacentHTML('beforeend', card);
