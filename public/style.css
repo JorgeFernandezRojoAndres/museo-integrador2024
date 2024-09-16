@@ -11,10 +11,43 @@ body {
     padding: 20px;
     background-color: var(--background-light);
 }
-
+select {
+    width: 100%; /* Hace que el selector ocupe todo el ancho del contenedor padre */
+    max-width: 300px; /* Limita el ancho máximo para que no se vuelva demasiado grande */
+    padding: 8px; /* Añade algo de relleno para hacerlo más fácil de usar */
+    margin: 5px 0; /* Añade margen para evitar que los elementos estén muy juntos */
+}
 .container {
     max-width: 1200px;
     margin: auto;
+}
+.view-more {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: var(--primary-color); /* Color primario para el fondo */
+    color: white; /* Texto blanco para mejor contraste */
+    border: none; /* Sin bordes para un look más limpio */
+    padding: 10px 20px; /* Padding para hacerlo más grande y fácil de clickear */
+    border-radius: 5px; /* Bordes redondeados */
+    font-weight: bold; /* Texto en negrita para mayor impacto */
+    transition: background-color 0.3s, transform 0.3s; /* Transición suave para hover */
+}
+
+.view-more:hover {
+    background-color: var(--hover-color); /* Cambio de color al pasar el mouse */
+    transform: scale(1.05); /* Ligeramente más grande al pasar el mouse */
+    cursor: pointer; /* Cursor de mano para indicar que es clickeable */
+}
+
+.filters {
+    margin-bottom: 20px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.5)), url('ImgFondo.jpg'); /* Asegúrate de usar la ruta correcta a tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    font-weight: bold;
+    padding: 15px; /* Ajustado para añadir un poco más de espacio interior */
+    border-radius: 8px; /* Bordes redondeados para estética */
 }
 
 h1 {
@@ -23,6 +56,7 @@ h1 {
 }
 
 .grid-container {
+    margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
@@ -132,6 +166,10 @@ h1 {
 
 /* Media queries para ajustar estilos en dispositivos más pequeños */
 @media (max-width: 768px) {
+    .filters {
+        background-size: cover;
+        padding: 10px; /* Ajusta el relleno para dispositivos más pequeños */
+    }
     .grid-container {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }

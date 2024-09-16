@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Obtiene los ID de objeto de la API utilizando los filtros seleccionados
     async function fetchObjectIDs() {
         loader.style.display = 'block'; // Mostrar cargador al iniciar la carga
-        const department = departmentSelect.value;
-        const keyword = keywordInput.value;
+        const department = departmentSelect.value 
+        const keyword = keywordInput.value || 'flowers';            
         const location = locationInput.value;
         
         let apiUrl = `https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&q=${encodeURIComponent(keyword)}`;
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
             apiUrl += `&geoLocation=${encodeURIComponent(location)}`;
         }
         
-        try {
+        try {   
             const response = await fetch(apiUrl);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Agregar la fecha o aproximación al atributo `title` de la imagen
             const creationDate = data.objectDate || 'Fecha desconocida'; // Usa la fecha de creación o muestra "Fecha desconocida" si no está disponible
                 // Detectar imágenes adicionales
-                // Detectar imágenes adicionales
+                
 const additionalImages = data.additionalImages && data.additionalImages.length > 0;
 let viewMoreButton = '';
 if (additionalImages) {
