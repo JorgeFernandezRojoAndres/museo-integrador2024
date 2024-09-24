@@ -1,0 +1,176 @@
+:root {
+    --primary-color: #007BFF;
+    --background-light: #f4f4f4;
+    --hover-color: #0056b3; /* Color más oscuro para hover */
+    --disabled-color: #cccccc;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--background-light);
+}
+select {
+    width: 100%; /* Hace que el selector ocupe todo el ancho del contenedor padre */
+    max-width: 300px; /* Limita el ancho máximo para que no se vuelva demasiado grande */
+    padding: 8px; /* Añade algo de relleno para hacerlo más fácil de usar */
+    margin: 5px 0; /* Añade margen para evitar que los elementos estén muy juntos */
+}
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+.view-more {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: var(--primary-color); /* Color primario para el fondo */
+    color: white; /* Texto blanco para mejor contraste */
+    border: none; /* Sin bordes para un look más limpio */
+    padding: 10px 20px; /* Padding para hacerlo más grande y fácil de clickear */
+    border-radius: 5px; /* Bordes redondeados */
+    font-weight: bold; /* Texto en negrita para mayor impacto */
+    transition: background-color 0.3s, transform 0.3s; /* Transición suave para hover */
+}
+
+.view-more:hover {
+    background-color: var(--hover-color); /* Cambio de color al pasar el mouse */
+    transform: scale(1.05); /* Ligeramente más grande al pasar el mouse */
+    cursor: pointer; /* Cursor de mano para indicar que es clickeable */
+}
+
+.filters {
+    margin-bottom: 20px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.5)), url('ImgFondo.jpg'); /* Asegúrate de usar la ruta correcta a tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    font-weight: bold;
+    padding: 15px; /* Ajustado para añadir un poco más de espacio interior */
+    border-radius: 8px; /* Bordes redondeados para estética */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.grid-container {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    height: auto; /* Mantiene el aspect ratio */
+}
+
+.card h3 {
+    padding: 10px 0;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Suaviza el cambio de color */
+}
+
+.pagination button:hover, .pagination button:focus {
+    background-color: var(--hover-color);
+    outline: none;
+}
+
+.pagination button:disabled {
+    background-color: var(--disabled-color);
+}
+#loader {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #007BFF;
+}
+/* Estilos para el modal */
+.modal {
+    display: none;
+    position: fixed; /* Fija el modal a la pantalla */
+    z-index: 1000; /* Asegura que el modal esté por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Permite el desplazamiento si el contenido es demasiado grande */
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* Ajusta el margen superior del modal */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 800px; /* Limita el ancho máximo del modal */
+    text-align: center; /* Centra el contenido del modal */
+    overflow-y: auto; /* Añade scroll si el contenido es muy alto */
+    position: relative; /* Asegura que los elementos internos estén posicionados en relación al modal */
+}
+
+/* Estilos para las imágenes dentro del modal */
+.modal-image {
+    max-width: 100%;
+    max-height: 80vh; /* Limita la altura máxima al 80% de la altura de la ventana */
+    margin: 10px auto;
+    display: block; /* Centra las imágenes horizontalmente */
+}
+
+/* Estilo para el botón de cerrar */
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute; /* Posiciona el botón de cerrar dentro del modal */
+    right: 20px;
+    top: 10px;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+/* Media queries para ajustar estilos en dispositivos más pequeños */
+@media (max-width: 768px) {
+    .filters {
+        background-size: cover;
+        padding: 10px; /* Ajusta el relleno para dispositivos más pequeños */
+    }
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}

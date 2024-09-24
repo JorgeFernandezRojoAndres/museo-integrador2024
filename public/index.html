@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metropolitan Museum Art Collection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="tsparticles"></div>
+        <h1>Metropolitan Museum Art Collection</h1>
+        
+        <!-- Filtros de búsqueda -->
+        <div class="filters">
+            <select id="departmentSelect">
+                <option value="">Seleccione un Departamento</option>
+                <!-- Opciones de departamentos serán llenadas dinámicamente desde el script -->
+            </select>
+            
+            <input type="text" id="keywordInput" placeholder="Buscar por palabra clave">
+
+            <!-- Select para localización -->
+            <select id="locationInput">
+                <option value="">Seleccione una Localización</option>
+                <option value="Europe">Europa</option>
+                <option value="Asia">Asia</option>
+                <option value="Africa">África</option>
+                <option value="North America">Norteamérica</option>
+                <option value="South America">Sudamérica</option>
+                <option value="Oceania">Oceanía</option>
+            </select>
+            
+            <!-- Checkbox para filtrar por imágenes adicionales -->
+            <label>
+                <input type="checkbox" id="additionalImagesOnly"> Solo mostrar objetos con imágenes adicionales
+            </label>
+
+            <button id="applyFiltersBtn">Aplicar Filtros</button>
+        </div>
+        
+        <!-- Contenedor para las obras de arte -->
+        <div id="artGrid" class="grid-container"></div>
+        
+        <!-- Paginación -->
+        <div class="pagination">
+            <button id="prevPage" disabled>Previous</button>
+            <button id="nextPage">Next</button>
+        </div>
+    </div>
+    
+    
+    <!-- Loader -->
+    <div id="loader" style="display: none;">Loading...</div>
+    
+    <!-- Cargar el script al final para asegurar que el DOM está listo -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
+    <script src="particles-config.js"></script>
+    <script src="script.js"></script>
+    
+    
+</body>
+</html>
