@@ -19,7 +19,7 @@ const options = {
       },
       modes: {
         push: {
-          quantity: 6, // número de partículas a añadir
+          quantity: 2, // número de partículas a añadir
         },
         repulse: {
           distance: 100, //la distancia de las partículas del ratón
@@ -37,7 +37,7 @@ const options = {
       },
       move: {
         enable: true, // this makes particles move
-        speed: { min: 1, max: 3 }, // esta es la velocidad de las partículas
+        speed: { min: 0.1, max: 0.3 }, // esta es la velocidad de las partículas
       },
       opacity: {
         value: { min: 0.5, max: 0.9 }, // esto establece la opacidad de las partículas
